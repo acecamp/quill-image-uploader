@@ -90,8 +90,9 @@ class ImageUploader {
         if (clipboard && (clipboard.items || clipboard.files)) {
             let items = clipboard.items || clipboard.files;
             const IMAGE_MIME_REGEX = /^image\/(jpe?g|gif|png|svg|webp)$/i;
-
-            for (let i = 0; i < items.length; i++) {
+            // 兼容 mac word，剪切板同时包含文字和图片，只取第一个内容
+            // for (var i = 0; i < items.length; i++) {
+            for (var i = 0; i < 1; i++) {
                 if (IMAGE_MIME_REGEX.test(items[i].type)) {
                     let file = items[i].getAsFile ? items[i].getAsFile() : items[i];
 
